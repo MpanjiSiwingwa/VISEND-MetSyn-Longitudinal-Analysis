@@ -38,13 +38,23 @@
 
 ---
 
+## 🔬 Highlights
+
+- Metabolic syndrome remained common over 144 weeks among PLHIV in Zambia on DTG- and PI-based ART.  
+- Risk increased with longer treatment duration and was consistently linked to older age, higher CD4 count, and female sex.  
+- Differences between DTG-based regimens were modest and not consistently significant in sensitivity analyses.  
+- Findings show metabolic risk is shaped by both treatment duration and host factors, beyond virological suppression.  
+- Routine metabolic screening and integration of HIV–NCD services are essential to sustain long-term HIV survival without added cardiometabolic harm.  
+
+---
+
 ## 📌 Project Overview
 This project investigates the correlation between **Metabolic Syndrome (MetS)** and the use of **dolutegravir (DTG)-based antiretroviral regimens** in people living with HIV (PLHIV). Using longitudinal data from the VISEND clinical study, we assessed the prevalence and risk of MetS over 144 weeks, focusing on regimens such as **TDF/3TC/DTG (TLD)** and **TAF/XTC/DTG (TAFED)**.
 
 ---
 
 ## 📂 Data Source
-The primary dataset was derived from the **VISEND trial**, specifically the file *VISEND_week_48.csv*, which contains 48‑week follow‑up data including:
+The primary dataset was derived from the **VISEND trial**, with follow‑up data including:
 - Anthropometric measurements  
 - Lipid profiles  
 - HIV viral load  
@@ -55,35 +65,47 @@ The primary dataset was derived from the **VISEND trial**, specifically the file
 ## 🛠️ Tools
 - **[Excel](https://www.microsoft.com)** – Data capture and preliminary cleaning  
 - **[REDCap](https://redcap.moh.gov.zm)** – Secure data storage and management  
-- **[Python](https://www.python.org/downloads)** – Advanced data cleaning, statistical analysis, and visualization  
+- **[R](https://cran.r-project.org)** – Data cleaning, statistical analysis, and visualization 
 
 ---
 
 ## 🧹 Data Cleaning and Preparation
-1. Importing and inspecting raw data.  
-2. Handling missing values and inconsistencies.  
-3. Standardizing variable formats for analysis.  
+- Imported and inspected VISEND trial data.  
+- Excluded participants with baseline MetS and their follow‑up records.  
+- Recoded and standardized key variables (regimen type, event names, age, CD4, viral load).  
+- Addressed missing values with complete‑case analysis and harmonized categorical factors.  
+- Created derived variables (new MetS cases, scaled predictors) for regression modeling.   
 
 ---
 
 ## 🔍 Exploratory Data Analysis
-Exploratory analysis focused on:
-- Estimating overall MetS prevalence.  
-- Comparing prevalence across DTG-based regimens.  
-- Assessing whether all DTG regimens exhibit similar risk patterns.  
+Exploratory analyses examined the distribution and incidence of metabolic syndrome across follow‑up visits.  
+- Estimated overall prevalence of MetS at baseline and during longitudinal follow‑up.  
+- Compared incidence and prevalence trends across DTG‑based regimens (TLD, TAFED) and PI‑based controls.  
+- Assessed temporal changes in risk, highlighting whether regimen‑specific patterns persisted over 144 weeks.  
+- Investigated host factors (age, sex, CD4 count, alcohol use) as potential contributors to observed differences.   
 
 ---
 
 ## 📈 Data Analysis
 Analytical methods included regression modeling and stratified comparisons to evaluate associations between MetS and ART regimens.
 
-```python
-# Example placeholder for regression analysis
-import statsmodels.api as sm
-model = sm.GEE.from_formula("MetS ~ Regimen_Type + Age + Sex + CD4_count",
-                            groups="Patient_ID", data=df)
-result = model.fit()
-print(result.summary())
+```r
+# Example regression analysis using GEE in R
+library(geepack)
+
+# Fit a GEE model for metabolic syndrome
+gee_model <- geeglm(
+  Metabolic_Syndrome ~ Regimen_Type + Age..yrs. + Sex + CD4_count.cells.µl.,
+  id      = ID,                          # participant identifier
+  data    = metabolic_data_clean,        # cleaned dataset
+  family  = binomial(link = "logit"),    # logistic regression
+  corstr  = "exchangeable"               # correlation structure
+)
+
+# Display model summary
+summary(gee_model)
+```
 
 ---
 
@@ -203,7 +225,6 @@ Key manuscript figures are available in the `figures/` directory.
 - DTG‑based regimens were associated with higher MetS risk compared with PI‑based controls (TAFED RR 1.35; TLD RR 1.38).  
 - Associations were stronger among women (TAFED RR 1.59; TLD RR 1.66).  
 - Older age and higher CD4 count independently predicted increased risk.  
-
 
 ### Recommendations
 ---
