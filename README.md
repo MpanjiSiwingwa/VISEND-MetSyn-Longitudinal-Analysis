@@ -1,4 +1,6 @@
-# Longitudinal Assessment of Metabolic Syndrome Risk in People Living with HIV on Dolutegravir-Based Antiretroviral Therapy: A 144-Week Analysis from the VISEND Trial in Zambia
+# VISEND-MetSyn-Longitudinal-Analysis
+
+**Reproducible Analysis Pipeline for Longitudinal Assessment of Metabolic Syndrome Risk in People Living with HIV on Dolutegravir-Based Therapy**
 
 ![R Version](https://img.shields.io/badge/R-4.5.1-blue?logo=r)
 ![Machine Learning](https://img.shields.io/badge/Machine_Learning-Pipeline-success?logo=r)
