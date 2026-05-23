@@ -317,7 +317,7 @@ Siwingwa M, et al. *Longitudinal Assessment of Metabolic Syndrome Risk in People
 Siwingwa M. *Metabolic Syndrome Prediction Using Machine Learning in HIV Cohorts Receiving Dolutegravir-Based ART* [GitHub repository]. 2026.
 
 Available at:  
-https://github.com/MpanjiSiwingwa/Metabolic-syndrome-prediction-using-machine-learning
+https://github.com/MpanjiSiwingwa/VISEND-MetSyn-Longitudinal-Analysis
 
 ---
 
