@@ -197,10 +197,13 @@ Key manuscript figures are available in the `figures/` directory.
 
 ### Results
 ---
-The analysis results are summarized as follows:
-1. The prevalence of MetS in the HIV population in the VISEND dataset at week 48
-2. The Association between DTG based regimens and MetS
-3. Association of other drugs and MetS
+
+- Median age was 44 years (IQR 38–51); 58.4% of participants were female.  
+- Metabolic syndrome prevalence increased over follow‑up, peaking at week 120 (TLD: 28.9%; TAFED: 27.4%; PI‑control: 20.0%).  
+- DTG‑based regimens were associated with higher MetS risk compared with PI‑based controls (TAFED RR 1.35; TLD RR 1.38).  
+- Associations were stronger among women (TAFED RR 1.59; TLD RR 1.66).  
+- Older age and higher CD4 count independently predicted increased risk.  
+
 
 ### Recommendations
 ---
