@@ -1,310 +1,391 @@
 # VISEND-MetSyn-Longitudinal-Analysis
 
-**Reproducible Analysis Pipeline for Longitudinal Assessment of Metabolic Syndrome Risk in People Living with HIV on Dolutegravir-Based Therapy**
+**Reproducible R Analysis Pipeline for Longitudinal Assessment of Metabolic Syndrome Among People Living with HIV in the VISEND Trial, Zambia**
 
 ![R Version](https://img.shields.io/badge/R-4.5.1-blue?logo=r)
-![Machine Learning](https://img.shields.io/badge/Machine_Learning-Pipeline-success?logo=r)
-![Clinical Research](https://img.shields.io/badge/Clinical-HIV%20Research-red?logo=medrxiv)
-![Project Status](https://img.shields.io/badge/Status-Active_Research-orange?logo=github)
+![Clinical Research](https://img.shields.io/badge/Clinical-HIV%20Research-red)
+![Project Status](https://img.shields.io/badge/Status-Research-orange?logo=github)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?logo=open-source-initiative)
-[![GitHub Profile](https://img.shields.io/badge/GitHub-MpanjiSiwingwa-black?logo=github)](https://github.com/MpanjiSiwingwa)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20145268-blue?logo=zenodo)](https://doi.org/10.5281/zenodo.20145268)
 
 ---
 
 ## 📑 Table of Contents
-- [Project Overview](#-project-overview)
-- [Data Source](#-data-source)
-- [Tools](#-tools)
-- [Data Cleaning and Preparation](#-data-cleaning-and-preparation)
-- [Exploratory Data Analysis](#-exploratory-data-analysis)
-- [Data Analysis](#-data-analysis)
-- [Getting Started](#-getting-started)
-- [Reproducible Environment](#-reproducible-environment)
-- [System Requirements](#-system-requirements)
-- [Approximate Runtime](#-approximate-runtime)
-- [Figures](#-figures)
-- [Results](#-results)
-- [Recommendations](#-recommendations)
-- [Strengths](#-strengths)
-- [Limitations](#-limitations)
-- [Future Work](#-future-work)
-- [References](#-references)
-- [Citation](#-citation)
-- [Repository Citation](#-repository-citation)
-- [License](#-license)
-- [Contact](#-contact)
-- [Status](#-status)
+
+* [Project Overview](#-project-overview)
+* [Study and Data Source](#-study-and-data-source)
+* [Analysis Objectives](#-analysis-objectives)
+* [Metabolic Syndrome Definition](#-metabolic-syndrome-definition)
+* [Tools and Software](#-tools-and-software)
+* [Data Cleaning and Preparation](#-data-cleaning-and-preparation)
+* [Statistical Analysis](#-statistical-analysis)
+* [Repository Structure](#-repository-structure)
+* [Getting Started](#-getting-started)
+* [Reproducibility](#-reproducibility)
+* [System Requirements](#-system-requirements)
+* [Figures and Tables](#-figures-and-tables)
+* [Data Availability](#-data-availability)
+* [Ethical Approval](#-ethical-approval)
+* [Strengths](#-strengths)
+* [Limitations](#-limitations)
+* [Future Work](#-future-work)
+* [Citation](#-citation)
+* [Repository Citation](#-repository-citation)
+* [License](#-license)
+* [Contact](#-contact)
+* [Status](#-status)
 
 ---
 
-## 🔬 Highlights
+## 🔬 Project Overview
 
-- Metabolic syndrome remained common over 144 weeks among PLHIV in Zambia on DTG- and PI-based ART.  
-- Risk increased with longer treatment duration and was consistently linked to older age, higher CD4 count, and female sex.  
-- Differences between DTG-based regimens were modest and not consistently significant in sensitivity analyses.  
-- Findings show metabolic risk is shaped by both treatment duration and host factors, beyond virological suppression.  
-- Routine metabolic screening and integration of HIV–NCD services are essential to sustain long-term HIV survival without added cardiometabolic harm.  
+This repository contains the R analysis pipeline used to investigate the **longitudinal epidemiology of metabolic syndrome (MetS)** among people living with HIV participating in the **Virological Impact of Switching from Efavirenz/Nevirapine-based first-line ART to Dolutegravir (VISEND) trial** in Zambia.
 
----
+The analysis evaluates changes in metabolic syndrome over **144 weeks of follow-up** and examines associations with antiretroviral therapy regimen, follow-up time, and selected demographic and clinical characteristics.
 
-## 📌 Project Overview
-This project investigates the correlation between **Metabolic Syndrome (MetS)** and the use of **dolutegravir (DTG)-based antiretroviral regimens** in people living with HIV (PLHIV). Using longitudinal data from the VISEND clinical study, we assessed the prevalence and risk of MetS over 144 weeks, focusing on regimens such as **TDF/3TC/DTG (TLD)** and **TAF/XTC/DTG (TAFED)**.
+The primary analysis script is:
 
----
-
-## 📂 Data Source
-The primary dataset was derived from the **VISEND trial**, with follow‑up data including:
-- Anthropometric measurements  
-- Lipid profiles  
-- HIV viral load  
-- CD4 count  
+```text
+MetSyn_Longitudinal_Analysis.R
+```
 
 ---
 
-## 🛠️ Tools
-- **[Excel](https://www.microsoft.com)** – Data capture and preliminary cleaning  
-- **[REDCap](https://redcap.moh.gov.zm)** – Secure data storage and management  
-- **[R](https://cran.r-project.org)** – Data cleaning, statistical analysis, and visualization 
+## 📌 Study and Data Source
+
+The analysis uses longitudinal data from the **VISEND trial**, a randomized clinical trial conducted in Zambia evaluating antiretroviral therapy regimens containing dolutegravir.
+
+The analysis includes repeated measurements collected during follow-up through Week 144.
+
+Key variables include:
+
+* Demographic characteristics
+* Anthropometric measurements
+* Blood pressure
+* Fasting glucose
+* Lipid measurements
+* HIV viral load
+* CD4 cell count
+* Antiretroviral therapy regimen
+
+The ART regimen groups evaluated in the analysis are:
+
+* **PI-based** – protease inhibitor-based control regimen
+* **TAFED** – tenofovir alafenamide/emtricitabine/dolutegravir
+* **TLD** – tenofovir/lamivudine/dolutegravir
+
+---
+
+## 🎯 Analysis Objectives
+
+The analysis pipeline was developed to:
+
+1. Describe the longitudinal prevalence of metabolic syndrome over 144 weeks.
+2. Evaluate the association between ART regimen and metabolic syndrome.
+3. Assess changes in metabolic syndrome risk over follow-up.
+4. Investigate non-linear temporal trends in metabolic syndrome.
+5. Evaluate associations between demographic and clinical characteristics and metabolic syndrome.
+6. Examine changes in individual metabolic syndrome components over time.
+7. Conduct sensitivity and supplementary analyses to assess the robustness of the findings.
+
+---
+
+## 🧬 Metabolic Syndrome Definition
+
+Metabolic syndrome was defined using the study-specific criteria applied in the VISEND analysis.
+
+The metabolic syndrome components included:
+
+* **Abdominal obesity**
+* **Elevated fasting plasma glucose**
+* **Reduced high-density lipoprotein cholesterol (HDL-C)**
+* **Elevated triglycerides**
+* **Elevated blood pressure**
+
+Participants meeting the required number of abnormal components were classified as having metabolic syndrome.
+
+Participants with metabolic syndrome at baseline were excluded from the longitudinal analysis of incident metabolic syndrome.
+
+---
+
+## 🛠️ Tools and Software
+
+The analysis was conducted primarily using **R (version 4.5.1)**.
+
+Key R packages include:
+
+* `dplyr`
+* `tidyr`
+* `forcats`
+* `ggplot2`
+* `geepack`
+* `emmeans`
+* `ggeffects`
+* `broom`
+* `gtsummary`
+* `gt`
+* `flextable`
+* `officer`
+* `epitools`
+
+The complete package requirements are defined within the analysis environment and can be reproduced using `renv` where applicable.
 
 ---
 
 ## 🧹 Data Cleaning and Preparation
-- Imported and inspected VISEND trial data.  
-- Excluded participants with baseline MetS and their follow‑up records.  
-- Recoded and standardized key variables (regimen type, event names, age, CD4, viral load).  
-- Addressed missing values with complete‑case analysis and harmonized categorical factors.  
-- Created derived variables (new MetS cases, scaled predictors) for regression modeling.   
+
+The pipeline includes several data preparation steps:
+
+* Importing and inspecting the VISEND longitudinal dataset
+* Standardising study visit names
+* Identifying and excluding participants with baseline metabolic syndrome
+* Recoding ART regimen categories
+* Standardising demographic and clinical variables
+* Deriving metabolic syndrome and its individual components
+* Preparing repeated longitudinal observations
+* Creating variables required for regression modelling
+* Handling missing observations for specific analyses
+* Preparing datasets for descriptive and longitudinal statistical analyses
 
 ---
 
-## 🔍 Exploratory Data Analysis
-Exploratory analyses examined the distribution and incidence of metabolic syndrome across follow‑up visits.  
-- Estimated overall prevalence of MetS at baseline and during longitudinal follow‑up.  
-- Compared incidence and prevalence trends across DTG‑based regimens (TLD, TAFED) and PI‑based controls.  
-- Assessed temporal changes in risk, highlighting whether regimen‑specific patterns persisted over 144 weeks.  
-- Investigated host factors (age, sex, CD4 count, alcohol use) as potential contributors to observed differences.   
+## 📊 Statistical Analysis
+
+The pipeline includes descriptive and longitudinal statistical analyses.
+
+### Descriptive Analysis
+
+The analysis describes:
+
+* Participant characteristics
+* Metabolic syndrome prevalence over follow-up
+* ART regimen-specific prevalence
+* Changes in metabolic syndrome components
+* Clinical and demographic characteristics associated with metabolic syndrome
+
+### Longitudinal Analysis
+
+Generalised estimating equations (**GEE**) are used to account for repeated observations from participants over time.
+
+The primary longitudinal models evaluate:
+
+* ART regimen
+* Follow-up time
+* Sex
+* Age
+* CD4 cell count
+
+An exchangeable correlation structure is used to account for within-participant correlation.
+
+### Non-linear Time Trends
+
+The pipeline also evaluates whether the relationship between follow-up time and metabolic syndrome is non-linear.
+
+Additional analyses include:
+
+* Spline-based GEE models
+* Piecewise GEE models
+* Regimen-specific temporal trends
+* Component-specific analyses
+
+### Sensitivity Analyses
+
+Additional analyses examine the robustness of the primary findings, including analyses incorporating relevant baseline and treatment-related characteristics.
 
 ---
 
-## 📈 Data Analysis
-Analytical methods included regression modeling and stratified comparisons to evaluate associations between MetS and ART regimens.
+## 📁 Repository Structure
 
-```r
-# Example regression analysis using GEE in R
-library(geepack)
+The repository is organised as follows:
 
-# Fit a GEE model for metabolic syndrome
-gee_model <- geeglm(
-  Metabolic_Syndrome ~ Regimen_Type + Age..yrs. + Sex + CD4_count.cells.µl.,
-  id      = ID,                          # participant identifier
-  data    = metabolic_data_clean,        # cleaned dataset
-  family  = binomial(link = "logit"),    # logistic regression
-  corstr  = "exchangeable"               # correlation structure
-)
-
-# Display model summary
-summary(gee_model)
+```text
+VISEND-MetSyn-Longitudinal-Analysis/
+│
+├── MetSyn_Longitudinal_Analysis.R
+├── README.md
+├── R/
+├── data/
+├── figures/
+├── tables/
+└── results/
 ```
 
+The participant-level dataset is **not included** in the public repository.
+
+Generated figures, tables, and other analysis outputs may be organised in their respective directories.
+
 ---
 
-## 🛠️ Getting Started
+## 🚀 Getting Started
 
-### 🚀 Clone the Repository
+### Clone the Repository
 
 ```bash
-git clone https://github.com/MpanjiSiwingwa/Metabolic-syndrome-prediction-using-machine-learning.git
-cd Metabolic-syndrome-prediction-using-machine-learning
-Rscript pipeline_metabolic_syndrome_MLA.R
+git clone https://github.com/MpanjiSiwingwa/VISEND-MetSyn-Longitudinal-Analysis.git
+cd VISEND-MetSyn-Longitudinal-Analysis
 ```
 
----
+### Install Required R Packages
 
-### ⚙️ Install Dependencies
+Open R or RStudio and install the required packages:
 
 ```r
 install.packages(c(
-  # 📦 Core Data Manipulation & Cleaning
-  "dplyr", "tidyr", "forcats", "janitor",
-  
-  # 📊 Visualization & Plot Formatting
-  "ggplot2", "scales", "gtExtras", "sysfonts", "gridExtra", "ggpubr",
-  
-  # 📈 Modeling & Marginal Effects
-  "geepack", "emmeans", "ggeffects", "margins",
-  
-  # 🧹 Model Tidying & Reporting
-  "broom", "knitr", "gt", "gtsummary", "flextable", "officer",
-  
-  # 🧪 Epidemiological Tools
+  "dplyr",
+  "tidyr",
+  "forcats",
+  "ggplot2",
+  "geepack",
+  "emmeans",
+  "ggeffects",
+  "broom",
+  "gtsummary",
+  "gt",
+  "flextable",
+  "officer",
   "epitools"
 ))
-
-))
 ```
 
----
+### Run the Analysis
 
-### ▶️ Run the Pipeline
+The primary analysis script can be run using:
 
 ```r
-source("pipeline_metabolic_syndrome_MLA.R")
+source("MetSyn_Longitudinal_Analysis.R")
 ```
 
-Alternatively:
+Alternatively, from the terminal:
 
 ```bash
-Rscript pipeline_metabolic_syndrome_MLA.R
+Rscript MetSyn_Longitudinal_Analysis.R
 ```
+
+Before running the pipeline, the required dataset must be available in the appropriate local data location.
 
 ---
 
-## 📦 Reproducible Environment
+## 🔁 Reproducibility
 
-Package versions were managed using:
-- R 4.5.1
-- `renv`
-- `sessionInfo()`
+The analysis uses a fixed random seed where applicable:
 
-Restore the computational environment using:
+```r
+set.seed(123)
+```
+
+The computational environment can be documented using:
+
+```r
+sessionInfo()
+```
+
+For projects using `renv`, the environment can be restored with:
 
 ```r
 renv::restore()
 ```
 
-Export session information:
-
-```r
-writeLines(capture.output(sessionInfo()), "sessionInfo.txt")
-```
+Researchers reproducing the analysis should record their R version and package versions because changes in software environments may affect computational results.
 
 ---
 
 ## 💻 System Requirements
 
-- R ≥ 4.5.1
-- macOS, Linux, or Windows
-- Recommended RAM: ≥8 GB
-- Multi-core CPU recommended for model training
+Recommended environment:
+
+* **R ≥ 4.5.1**
+* macOS, Linux, or Windows
+* At least **8 GB RAM**
+* Sufficient storage for the study dataset and generated outputs
+
+Actual computational requirements will depend on the size of the dataset and the analyses being performed.
 
 ---
 
-## ⏱️ Approximate Runtime
+## 📈 Figures and Tables
 
-| Step | Estimated Runtime |
-|---|---|
-| Data cleaning | 2–5 min |
-| Feature selection | 5–15 min |
-| Model training | 20–60 min |
-| SHAP analysis | 10–30 min |
+The analysis pipeline generates figures and tables describing:
 
----
+* Participant follow-up
+* Metabolic syndrome prevalence over time
+* ART regimen-specific trends
+* Non-linear temporal patterns
+* Adjusted associations between ART regimen and metabolic syndrome
+* Predicted probabilities of metabolic syndrome
+* Individual metabolic syndrome components
+* Sensitivity and supplementary analyses
 
-## 📊 Figures
-
-Key manuscript figures are available in the `figures/` directory.
-
-### Main Figures
-- Figure 1. Participant flow and incident metabolic syndrome cases over 144 weeks
-- Figure 2. Cumulative incidence of metabolic syndrome over 144 weeks by ART regimen
-- Figure 3. Adjusted odds ratios for metabolic syndrome stratified by ART regimen
-- Figure 4. Predicted marginal probabilities of metabolic syndrome by ART regimen
-- Figure 5. Sex-stratified predicted probabilities of metabolic syndrome by ART regimen
-- Figure 6. Adjusted odds ratios for metabolic syndrome from primary and sensitivity analyses
-
-### Supplementary Figures
-- xxxxxx
----
-
-### Results
----
-
-- Median age was 44 years (IQR 38–51); 58.4% of participants were female.  
-- Metabolic syndrome prevalence increased over follow‑up, peaking at week 120 (TLD: 28.9%; TAFED: 27.4%; PI‑control: 20.0%).  
-- DTG‑based regimens were associated with higher MetS risk compared with PI‑based controls (TAFED RR 1.35; TLD RR 1.38).  
-- Associations were stronger among women (TAFED RR 1.59; TLD RR 1.66).  
-- Older age and higher CD4 count independently predicted increased risk.  
-
-### Recommendations
----
-
-- Integrate **routine metabolic screening** into HIV care, particularly for patients receiving TLD regimens.  
-- Conduct **baseline and periodic assessments** of weight, waist circumference, lipid profiles, and glucose metabolism to enable early detection and management of metabolic complications.  
-- Develop **sex- and age-specific interventions**, given the heightened risk among women and older adults.  
-- Carefully balance **ART regimen selection** between virological efficacy and metabolic safety, especially in patients with pre-existing cardiometabolic risk factors.  
-- Implement **lifestyle modification programs**, including culturally adapted dietary counselling, physical activity promotion, and smoking cessation, tailored to African contexts.  
-- Strengthen **laboratory capacity** for metabolic monitoring and train healthcare providers in integrated HIV–NCD management.  
-- Establish **referral systems** for specialized care to manage complex metabolic complications.  
-- Include **metabolic endpoints** in ART program evaluations to monitor long-term cardiovascular outcomes.  
-- Support **policy-level initiatives** to ensure sustainability of integrated HIV–NCD care models in resource-limited settings.  
-- Advance **pharmacogenomics research** and collaborative efforts to build African genomic databases, enabling precision medicine approaches to metabolic risk in HIV care.  
+Final manuscript figures and tables should be generated from the version of the analysis script corresponding to the manuscript submission.
 
 ---
 
 ## 🔐 Data Availability
 
-The VISEND clinical dataset used in this study contains sensitive participant information and is not publicly available due to ethical and institutional restrictions.
+The VISEND clinical dataset contains sensitive participant information and is **not publicly available** in this repository because of ethical, privacy, and institutional data-sharing restrictions.
 
-Researchers interested in accessing de-identified data for scientific collaboration may contact the corresponding author subject to institutional approvals and data-sharing agreements.
+The repository therefore contains the **analysis code but not participant-level data**.
 
-All scripts required to reproduce the analyses are fully available in this repository.
-
----
-
-## 🧾 Ethical Approval
-
-The VISEND study received ethical approval from the University of Zambia Biomedical Research Ethics Committee (UNZABREC). All participants provided informed consent prior to enrollment.
+Researchers interested in accessing de-identified data for scientific collaboration should contact the relevant VISEND study investigators and obtain the required institutional and ethical approvals.
 
 ---
 
-## 📑 Reporting Standards
+## ⚖️ Ethical Approval
 
-This repository and accompanying manuscript were developed in alignment with:
-- TRIPOD reporting recommendations
-- TRIPOD-AI guidance principles
-- Transparent and reproducible machine learning practices in clinical research
+The VISEND study received ethical approval from the **University of Zambia Biomedical Research Ethics Committee (UNZABREC)**.
+
+All participants provided informed consent prior to enrolment in the study.
 
 ---
 
 ## 💪 Strengths
-- Large sample size, enhancing statistical power and reliability of findings.  
-- Longitudinal design with extended 144‑week follow‑up, allowing assessment of long‑term metabolic outcomes.  
-- Comprehensive clinical and laboratory assessments conducted at multiple time points.  
-- Use of standardized metabolic syndrome criteria, improving comparability with other studies.  
-- Among the few investigations to report long‑term metabolic outcomes of DTG‑based ART in a large African cohort.  
-- Provides valuable context‑specific evidence relevant to HIV care in sub‑Saharan Africa.  
 
+Key strengths of the analysis include:
+
+* Longitudinal follow-up extending to **144 weeks**
+* Repeated metabolic measurements during follow-up
+* Evaluation of multiple ART regimen groups
+* Assessment of both metabolic syndrome and its individual components
+* Use of longitudinal statistical methods accounting for repeated observations
+* Evaluation of non-linear temporal trends
+* Focus on an African population that remains underrepresented in longitudinal cardiometabolic research
 
 ---
 
 ## ⚠️ Limitations
 
-- The observational design precludes causal inference, and residual confounding from unmeasured factors such as diet, physical activity, or genetic predisposition cannot be excluded.  
-- Attrition over 144 weeks may have introduced selection bias if participants lost to follow-up differed in their metabolic risk.  
-- The study was conducted among urban Zambian adults, which may limit generalizability to rural settings or other African populations with different demographic and epidemiological profiles.  
+Important limitations include:
+
+* Loss to follow-up over the 144-week study period may introduce attrition-related bias.
+* Residual confounding from factors not captured in the analysis cannot be excluded.
+* The study population may not be representative of all people living with HIV in Zambia or other African populations.
+* Findings from this study should be interpreted within the context of the VISEND trial population and study design.
 
 ---
 
 ## 🔮 Future Work
 
-- Explore mechanistic pathways linking **DTG** to metabolic disturbances, including inflammatory markers, adipokines, and detailed body composition analyses.  
-- Conduct **randomized controlled trials** comparing DTG with alternative ART regimens over extended follow-up in African populations to establish causal evidence.  
-- Implement and evaluate **integrated HIV–NCD care models** that are feasible and scalable in resource-limited settings.  
-- Investigate the role of **pharmacogenomics**, as genetic predisposition may explain interindividual variability in metabolic responses to DTG.  
-- Support collaborative efforts to establish **African genomic databases** to advance precision medicine and metabolic research in HIV care.  
+Future research may build on this analysis by:
 
+* Investigating biological mechanisms underlying metabolic changes during ART
+* Evaluating detailed body composition and adiposity measures
+* Examining genetic and pharmacogenomic determinants of metabolic response
+* Investigating longer-term cardiovascular outcomes
+* Evaluating integrated HIV and non-communicable disease care models
+* Conducting collaborative analyses across African HIV cohorts
+* Developing predictive models for individual cardiometabolic risk
 
 ---
 
 ## 📚 References
 
-1. 	Venter WDF, Moorhouse M, Sokhela S, Fairlie L, Mashabane N, Masenya M, et al. Dolutegravir plus Two Different Prodrugs of Tenofovir to Treat HIV. New England Journal of Medicine. 2019 Aug 29;381(9):803–15. 
-2. 	Hurbans N, Naidoo P. Efficacy, safety, and tolerability of dolutegravir-based ART regimen in Durban, South Africa: a cohort study. BMC Infect Dis. 2024 Dec 1;24(1). 
-3. 	Zambia Consolidated Guidelines for Treatment and Prevention of HIV Infection. 2020. 
-4. 	Gebremedhin T, Ayenalem M, Adem M, Geremew D, Aleka Y, Kiflie A. Dolutegravir Based Therapy Showed CD4 + T Cell Count Recovery and Viral Load Suppression among Art Naive HIV Positive Individuals: A Longitudinal Evaluation. Systematic Review Pharmacy. 2023;14(4):264–71.
+1. Venter WDF, Moorhouse M, Sokhela S, Fairlie L, Mashabane N, Masenya M, et al. Dolutegravir plus Two Different Prodrugs of Tenofovir to Treat HIV. *New England Journal of Medicine*. 2019;381(9):803–815.
 
- ---
+2. Hurbans N, Naidoo P. Efficacy, safety, and tolerability of dolutegravir-based ART regimen in Durban, South Africa: a cohort study. *BMC Infectious Diseases*. 2024;24(1).
+
+3. Zambia Consolidated Guidelines for Treatment and Prevention of HIV Infection. 2020.
+
+4. Gebremedhin T, Ayenalem M, Adem M, Geremew D, Aleka Y, Kiflie A. Dolutegravir based therapy showed CD4+ T cell count recovery and viral load suppression among ART-naive HIV-positive individuals: a longitudinal evaluation. *Systematic Reviews in Pharmacy*. 2023;14(4):264–271.
+
+---
 
 ## 📌 Citation
 
@@ -314,31 +395,33 @@ Siwingwa M, et al. *Longitudinal Assessment of Metabolic Syndrome Risk in People
 
 ## 📖 Repository Citation
 
-Siwingwa M. *Metabolic Syndrome Prediction Using Machine Learning in HIV Cohorts Receiving Dolutegravir-Based ART* [GitHub repository]. 2026.
+Siwingwa M. *VISEND-MetSyn-Longitudinal-Analysis: Reproducible R Analysis Pipeline for Longitudinal Assessment of Metabolic Syndrome Among People Living with HIV in the VISEND Trial, Zambia.* GitHub repository. 2026.
 
-Available at:  
+**Repository:**
 https://github.com/MpanjiSiwingwa/VISEND-MetSyn-Longitudinal-Analysis
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
 
 ---
 
 ## 📬 Contact
 
-**Mpanji Siwingwa**  
-PhD Researcher | Machine Learning | HIV Research | Bioinformatics
+**Mpanji Siwingwa**
+PhD Researcher | Bioinformatics | HIV Research
 
-- GitHub: https://github.com/MpanjiSiwingwa
-- Email: mpanjisiwingwa@gmail.com
-- LinkedIn: https://linkedin.com/in/mpanji-siwingwa-b0272a74
-- ORCID: https://orcid.org/0000-0002-3623-2108
+* **GitHub:** https://github.com/MpanjiSiwingwa
+* **Email:** [mpanjisiwingwa@gmail.com](mailto:mpanjisiwingwa@gmail.com)
+* **LinkedIn:** https://linkedin.com/in/mpanji-siwingwa-b0272a74
+* **ORCID:** https://orcid.org/0000-0002-3623-2108
 
 ---
 
 ## 📌 Status
 
-This repository accompanies an ongoing research project and will continue evolving as additional analyses and validation studies are completed.
+This repository contains the analysis pipeline associated with the VISEND longitudinal metabolic syndrome analysis.
+
+The repository may be updated as the manuscript undergoes further review and as additional validation and supplementary analyses are completed.
