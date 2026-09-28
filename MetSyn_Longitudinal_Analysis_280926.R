@@ -201,8 +201,6 @@ data <- data %>%
       # VISEND analysis time point:
       # raw Week 64 is analysed as Week 72
       str_to_lower(Event_Name) %in% c(
-        "week_64",
-        "week 64",
         "week_72",
         "week 72"
       ) ~ "Week_72",
@@ -215,17 +213,14 @@ data <- data %>%
       # VISEND analysis time point:
       # raw Week 112 is analysed as Week 120
       str_to_lower(Event_Name) %in% c(
-        "week_112",
-        "week _112",
-        "week 112",
         "week_120",
         "week 120"
       ) ~ "Week_120",
       
       str_to_lower(Event_Name) %in% c(
         "week_144",
-        "week_ 144",
-        "week 144"
+        "week 144",
+        "week_144"
       ) ~ "Week_144",
       
       TRUE ~ Event_Name
