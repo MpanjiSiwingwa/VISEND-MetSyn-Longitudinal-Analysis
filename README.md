@@ -108,25 +108,49 @@ Participants with metabolic syndrome at baseline were excluded from the longitud
 
 ## 🛠️ Tools and Software
 
-The analysis was conducted primarily using **R (version 4.5.1)**.
+The analysis was conducted using **R**.
 
-Key R packages include:
+### R Packages
 
-* `dplyr`
-* `tidyr`
-* `forcats`
-* `ggplot2`
-* `geepack`
-* `emmeans`
-* `ggeffects`
-* `broom`
-* `gtsummary`
-* `gt`
-* `flextable`
-* `officer`
-* `epitools`
+The pipeline uses the following R packages:
 
-The complete package requirements are defined within the analysis environment and can be reproduced using `renv` where applicable.
+#### Data manipulation and cleaning
+- `dplyr`
+- `tidyr`
+- `forcats`
+- `janitor`
+- `purrr`
+- `stringr`
+
+#### Statistical modelling
+- `geepack`
+- `emmeans`
+- `ggeffects`
+- `margins`
+- `epitools`
+- `splines`
+
+#### Model tidying and results
+- `broom`
+- `knitr`
+- `gtsummary`
+- `gt`
+
+#### Data visualization
+- `ggplot2`
+- `scales`
+- `ggpubr`
+- `gridExtra`
+- `patchwork`
+
+#### Publication and document outputs
+- `flextable`
+- `officer`
+- `gtExtras`
+- `sysfonts`
+- `webshot`
+
+The analysis script loads these packages at the beginning of the pipeline and uses them for data preparation, statistical modelling, visualisation, and generation of publication-ready outputs.
 
 ---
 
