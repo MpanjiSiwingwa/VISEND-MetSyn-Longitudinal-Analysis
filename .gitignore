@@ -1,1 +1,23 @@
+# Data files — do not upload participant-level data
+data/
+*.csv
+*.xlsx
+*.xls
+*.sav
+*.rds
 
+# R/RStudio files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+
+# Analysis outputs
+results/
