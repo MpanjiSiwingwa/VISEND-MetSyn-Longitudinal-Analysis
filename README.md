@@ -1,4 +1,3 @@
-<img width="468" height="41" alt="image" src="https://github.com/user-attachments/assets/7845ffb9-ab49-4dda-9aef-7f176bc23571" /># VISEND-MetSyn-Longitudinal-Analysis
 
 **Reproducible R Analysis Pipeline for Longitudinal Assessment of Metabolic Syndrome Among People Living with HIV in the VISEND Trial, Zambia**
 
@@ -38,9 +37,9 @@
 
 ## 🔬 Project Overview
 
-This repository contains the R analysis pipeline used to investigate the **longitudinal epidemiology of metabolic syndrome (MetS)** among people living with HIV participating in the **Virological Impact of Switching from Efavirenz/Nevirapine-based first-line ART to Dolutegravir (VISEND) trial** in Zambia.
+This repository contains the R analysis pipeline used to investigate the longitudinal epidemiology of metabolic syndrome (MetS) among people living with HIV participating in the Virological Impact of Switching from Efavirenz/Nevirapine-based first-line ART to Dolutegravir (VISEND) trial in Zambia.
 
-The analysis evaluates changes in metabolic syndrome over **144 weeks of follow-up** and examines associations with antiretroviral therapy regimen, follow-up time, and selected demographic and clinical characteristics.
+The analysis evaluates changes in metabolic syndrome over 144 weeks of follow-up and examines associations with antiretroviral therapy regimen, follow-up time, and selected demographic and clinical characteristics.
 
 The primary analysis script is:
 
@@ -52,7 +51,7 @@ MetSyn_Longitudinal_Analysis.R
 
 ## 📌 Study and Data Source
 
-The analysis uses longitudinal data from the **VISEND trial**, a randomized clinical trial conducted in Zambia evaluating antiretroviral therapy regimens containing dolutegravir.
+The analysis uses longitudinal data from the VISEND trial, a randomized clinical trial conducted in Zambia evaluating antiretroviral therapy regimens containing dolutegravir.
 
 The analysis includes repeated measurements collected during follow-up through Week 144.
 
