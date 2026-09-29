@@ -414,7 +414,11 @@ Future research may build on this analysis by:
 
 If you use this code, please cite:
 
-Siwingwa M. VISEND Metabolic Syndrome Longitudinal Analysis. Version 1.0.0. Zenodo. 2026. https://doi.org/10.5281/zenodo.23023581
+> Siwingwa M. *VISEND Metabolic Syndrome Longitudinal Analysis*. Version 1.0.0. Zenodo. 2026. https://doi.org/10.5281/zenodo.23023581
+
+### Associated manuscript
+
+Siwingwa M, et al. *Longitudinal Changes in the Odds of Metabolic Syndrome Among People Living with HIV Receiving Dolutegravir-Based Antiretroviral Therapy: A 144-Week Analysis from the VISEND Trial in Zambia.* Manuscript in preparation, 2026.
 
 ---
 
