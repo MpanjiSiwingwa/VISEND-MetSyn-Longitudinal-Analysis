@@ -75,7 +75,7 @@ library(webshot)
 # Data configuration
 # -----------------------------------------------------------------------------
 
-data_file <- "MetSyn_dataset_2025_cleaned_080626.csv"
+data_file <- "input_dataset.csv"
 
 
 # -----------------------------------------------------------------------------
@@ -86,7 +86,7 @@ if (!file.exists(data_file)) {
   stop(
     paste0(
       "Input dataset not found: ", data_file, "\n\n",
-      "Please place the authorized VISEND dataset in the expected ",
+      "Please place the authorized dataset in the expected ",
       "data directory or provide the correct file path."
     )
   )
