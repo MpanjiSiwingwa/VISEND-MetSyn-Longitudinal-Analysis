@@ -37,9 +37,11 @@
 
 ## 🔬 Project Overview
 
-This repository contains the R analysis pipeline used to investigate the longitudinal epidemiology of metabolic syndrome (MetS) among people living with HIV participating in the Virological Impact of Switching from Efavirenz/Nevirapine-based first-line ART to Dolutegravir (VISEND) trial in Zambia.
+This repository contains the R analysis pipeline used to investigate the longitudinal development of metabolic syndrome (MetS) among people living with HIV participating in the Virological Impact of Switching from Efavirenz/Nevirapine-based First-Line ART to Dolutegravir (VISEND) trial in Zambia.
 
-The analysis evaluates changes in metabolic syndrome over 144 weeks of follow-up and examines associations with antiretroviral therapy regimen, follow-up time, and selected demographic and clinical characteristics.
+The analysis examines changes in metabolic syndrome over 144 weeks of follow-up and compares MetS development across three ART treatment groups: tenofovir/lamivudine/dolutegravir (TLD), tenofovir alafenamide/emtricitabine/dolutegravir (TAFED), and protease inhibitor-based regimens. The analysis also examines associations between MetS, follow-up time, and selected demographic and clinical characteristics.
+
+Because treatment allocation differed according to baseline HIV viral load strata and the three treatment groups differed in regimen composition and NRTI backbone, the analyses are interpreted as comparisons across distinct ART treatment groups rather than as a conventional intervention-versus-control comparison.
 
 The primary analysis script is:
 
